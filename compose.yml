@@ -1,0 +1,32 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+    logging:
+      driver: none
+
+  backend:
+    depends_on:
+      - mongo
+    container_name: dev_excuse_backend
+    build: ./backend
+    ports:
+      - 3001:3001
+    develop:
+      watch:
+        - path: ./backend/package.json
+          action: rebuild
+        - path: ./backend/package-lock.json
+          action: rebuild
+        - path: ./backend
+          target: /backend
+          action: sync
+          ignore:
+            - node_modules/
+
+volumes:
+  mongo-data:
