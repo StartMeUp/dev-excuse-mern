@@ -1,0 +1,7 @@
+# ignore folder node_modules in all subfolders
+**/.eslintcache
+**/node_modules
+**/dist
+**/build
+**/coverage
+**/.env
