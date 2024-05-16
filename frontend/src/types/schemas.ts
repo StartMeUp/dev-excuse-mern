@@ -14,12 +14,11 @@ export type Excuses = z.infer<typeof excusesSchema>;
 const responseSchema = z.object({
   success: z.boolean(),
   message: z.string(),
-  data: z.unknown().or(z.null()),
 });
 
 export const excuseResponseSchema = responseSchema.merge(
-  z.object({ data: excuseSchema }),
+  z.object({ data: z.nullable(excuseSchema) }),
 );
 export const excusesResponseSchema = responseSchema.merge(
-  z.object({ data: excusesSchema }),
+  z.object({ data: z.nullable(excusesSchema) }),
 );

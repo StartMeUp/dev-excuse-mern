@@ -18,7 +18,7 @@ export const useGetOneExcuse = (http_code: Excuse["http_code"]) => {
   return useQuery({
     queryKey: ["excuses", http_code],
     queryFn: () => fetchOneExcuse(Number(http_code)),
-    enabled: !!http_code,
+    enabled: !isNaN(Number(http_code)),
     select: (data) => data?.data,
   });
 };
@@ -27,8 +27,9 @@ export const useCreateOneExcuse = () => {
   const queryClient = new QueryClient();
   return useMutation({
     mutationFn: (newExcuse: Excuse) => fetchCreateOneExcuse(newExcuse),
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["excuses"] });
+      return data.data;
     },
   });
 };
