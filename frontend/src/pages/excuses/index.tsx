@@ -1,7 +1,41 @@
+import { useGetAllExcuses } from "@/hooks/tanstack.hooks";
+import { AwaitingData } from "@/components/AwaitingData";
+import { Box, H1 } from "@/components";
+import { Link } from "react-router-dom";
+
 export const ExcusesPage = () => {
+  const { data: excuses, isLoading, isError, error } = useGetAllExcuses();
+
+  if (isLoading || isError || error)
+    return (
+      <AwaitingData isLoading={isLoading} isError={isError} error={error} />
+    );
+
+  if (!excuses || excuses.length === 0)
+    return <Box>Aucune excuse à lister</Box>;
+
   return (
-    <div>
-      <h1>Excuses</h1>
-    </div>
+    <>
+      <H1>Liste des excuses</H1>
+      <Box className="text-left">
+        {excuses.length === 0 ? (
+          <p>Aucune excuse à lister</p>
+        ) : (
+          <ul>
+            {excuses.map((excuse) => (
+              <li key={excuse._id}>
+                <Link
+                  to={`/excuses/${excuse.http_code}`}
+                  className="text-blue-500 underline"
+                >
+                  {excuse.http_code}
+                </Link>{" "}
+                - {excuse.message}
+              </li>
+            ))}
+          </ul>
+        )}
+      </Box>
+    </>
   );
 };

@@ -10,6 +10,7 @@ export const useGetAllExcuses = () => {
   return useQuery({
     queryKey: ["excuses"],
     queryFn: () => fetchAllExcuses(),
+    select: (data) => data?.data,
   });
 };
 
@@ -18,6 +19,7 @@ export const useGetOneExcuse = (http_code: Excuse["http_code"]) => {
     queryKey: ["excuses", http_code],
     queryFn: () => fetchOneExcuse(Number(http_code)),
     enabled: !!http_code,
+    select: (data) => data?.data,
   });
 };
 
