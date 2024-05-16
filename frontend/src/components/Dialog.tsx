@@ -4,14 +4,14 @@ import { forwardRef } from "react";
 import { DialogNativeProps } from "@/types";
 import { cn } from "@/utils";
 import { Box, DualButtons, H1, Separator } from ".";
-import { useRouter } from "next/router";
-import CloseX from "../../public/images/close-x.svg";
+import { useNavigate } from "react-router-dom";
+import CloseX from "@/assets/images/close-x.svg?react";
 
 type DialogProps = DialogNativeProps & { closeDialog: () => void };
 
 export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(
   ({ children, className, closeDialog, ...props }, ref) => {
-    const { push } = useRouter();
+    const navigate = useNavigate();
 
     return (
       <dialog
@@ -37,7 +37,7 @@ export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(
               children: <span>Liste des excuses</span>,
               onClick: () => {
                 closeDialog();
-                push("/excuses");
+                navigate("/excuses");
               },
             }}
             rightButtonProps={{
