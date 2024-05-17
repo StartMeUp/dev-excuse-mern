@@ -64,7 +64,7 @@ export function HomePage() {
       <>
         <H1>Excuses de dev</H1>
         <Box className="bg-slate-200">
-          <p>Pas d'excuses à lister</p>
+          <p>LA DB est vide ! Pas d'excuses à lister</p>
         </Box>
         <SeedDbButton />
       </>
