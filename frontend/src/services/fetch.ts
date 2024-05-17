@@ -17,6 +17,9 @@ export const fetchCreateOneExcuse = (newExcuse: Excuse) =>
     data: JSON.stringify(newExcuse),
   });
 
+export const fetchSeedDB = () =>
+  fetchClient("/excuses/seed", { zodSchema: excusesResponseSchema });
+
 // generic client to fetch data from the server
 
 export type ClientConfig<T> = {
