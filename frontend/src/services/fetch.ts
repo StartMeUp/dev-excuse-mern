@@ -14,7 +14,7 @@ export const fetchOneExcuse = (http_code: Excuse["http_code"]) =>
 export const fetchCreateOneExcuse = (newExcuse: Excuse) =>
   fetchClient(`/excuses/createOne`, {
     zodSchema: excuseResponseSchema,
-    data: JSON.stringify(newExcuse),
+    data: newExcuse,
   });
 
 export const fetchSeedDB = () =>

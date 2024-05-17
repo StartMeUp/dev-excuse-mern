@@ -53,33 +53,4 @@ export const excusesData = [
   },
   { http_code: 735, tag: "Fucking", message: " Fucking IE" },
   { http_code: 737, tag: "Fucking", message: " FuckThreadsing" },
-
-  { http_code: 739, tag: "Fucking", message: " Fucking Windows" },
-  { http_code: 738, tag: "Fucking", message: " Fucking Exactly" },
-  {
-    http_code: 750,
-    tag: "Syntax Errors",
-    message: " Didn't bother to compile it",
-  },
-  { http_code: 753, tag: "Syntax Errors", message: " Syntax Error" },
-  {
-    http_code: 754,
-    tag: "Syntax Errors",
-    message: " Too many semi-colons",
-  },
-  {
-    http_code: 755,
-    tag: "Syntax Errors",
-    message: " Not enough semi-colons",
-  },
-  {
-    http_code: 756,
-    tag: "Syntax Errors",
-    message: " Insufficiently polite",
-  },
-  {
-    http_code: 757,
-    tag: "Syntax Errors",
-    message: " Excessively polite",
-  },
 ];

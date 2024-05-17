@@ -17,21 +17,20 @@ export const ExcusesPage = () => {
   return (
     <>
       <H1>Liste des excuses</H1>
-      <Box className="text-left">
+      <Box className="max-w-full text-left">
         {excuses.length === 0 ? (
           <p>Aucune excuse à lister</p>
         ) : (
-          <ul>
+          <ul className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6">
             {excuses.map((excuse) => (
-              <li key={excuse._id}>
-                <Link
-                  to={`/excuses/${excuse.http_code}`}
-                  className="text-blue-500 underline"
-                >
-                  {excuse.http_code}
-                </Link>{" "}
-                - {excuse.message}
-              </li>
+              <Link
+                to={`/excuses/${excuse.http_code}`}
+                className="rounded-lg bg-slate-200 p-3"
+              >
+                <li key={excuse._id}>
+                  {excuse.http_code} - {excuse.message} - {excuse.tag}
+                </li>
+              </Link>
             ))}
           </ul>
         )}

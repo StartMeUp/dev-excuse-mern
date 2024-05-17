@@ -26,9 +26,9 @@ export const useCreateOneExcuse = () => {
   const queryClient = new QueryClient();
   return useMutation({
     mutationFn: (newExcuse: Excuse) => fetchCreateOneExcuse(newExcuse),
-    onSuccess: (data) => {
+    onSuccess: ({ data: excuse }) => {
       queryClient.invalidateQueries({ queryKey: ["excuses"] });
-      return data.data;
+      return excuse;
     },
   });
 };

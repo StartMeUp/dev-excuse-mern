@@ -1,5 +1,5 @@
 import { Button } from ".";
-import { ExcusePayload } from "@/types";
+import { Excuse } from "@/types";
 import { useCreateOneExcuse, useGetAllExcuses } from "@/hooks/tanstack.hooks";
 import { useState } from "react";
 import { cn } from "@/utils";
@@ -19,6 +19,8 @@ export const CreateExcuseForm = ({
     const formData = new FormData(event.target as HTMLFormElement);
     const formObject = Object.fromEntries(formData);
 
+    console.log("formObject", formObject);
+
     if (
       excuses?.some(
         (excuse) => excuse.http_code === Number(formObject.http_code),
@@ -30,7 +32,7 @@ export const CreateExcuseForm = ({
       const excusePayload = {
         ...formObject,
         http_code: Number(formObject.http_code),
-      } as ExcusePayload;
+      } as Excuse;
 
       mutate(excusePayload, {
         onSuccess: () => {
@@ -42,14 +44,16 @@ export const CreateExcuseForm = ({
 
   if (isSuccess) {
     return (
-      <p className="cursor-pointer rounded-lg bg-green-500 p-4 text-center text-2xl font-bold text-white"></p>
+      <p className="cursor-pointer rounded-lg bg-green-500 p-4 text-center text-2xl font-bold text-white">
+        Excuse créée avec succès
+      </p>
     );
   }
 
   if (isError || error) {
     return (
       <p className="rounded-lg bg-red-500 p-4 text-center text-2xl font-bold text-white">
-        Une erreur est survenue : {error.message}
+        Une erreur est survenue : {error.name} || {error.message}
       </p>
     );
   }
