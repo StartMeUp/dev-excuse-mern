@@ -1,5 +1,5 @@
 // components/button.ts
-import { cva, cx, type VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonNativeProps, DivNativeProps } from "@/types";
 import { cn } from "@/utils";
 
