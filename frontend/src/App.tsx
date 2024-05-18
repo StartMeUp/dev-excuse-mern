@@ -8,19 +8,21 @@ import {
   HttpCodePage,
 } from "./pages";
 
-const App = () => (
-  <Routes>
-    <Route path="/" element={<MainLayout />}>
-      <Route index element={<HomePage />} />
-      <Route path="lost" element={<LostPage />} />
-      <Route path="excuses">
-        <Route index element={<ExcusesPage />} />
-        <Route path=":http_code" element={<HttpCodePage />} />
+const App = () => {
+  console.log("NODE_ENV", process.env.NODE_ENV);
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="lost" element={<LostPage />} />
+        <Route path="excuses">
+          <Route index element={<ExcusesPage />} />
+          <Route path=":http_code" element={<HttpCodePage />} />
+        </Route>
+        {/* 404s */}
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-      {/* 404s */}
-      <Route path="*" element={<NotFoundPage />} />
-    </Route>
-  </Routes>
-);
-
+    </Routes>
+  );
+};
 export default App;

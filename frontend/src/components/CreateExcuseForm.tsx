@@ -19,8 +19,6 @@ export const CreateExcuseForm = ({
     const formData = new FormData(event.target as HTMLFormElement);
     const formObject = Object.fromEntries(formData);
 
-    console.log("formObject", formObject);
-
     if (
       excuses?.some(
         (excuse) => excuse.http_code === Number(formObject.http_code),

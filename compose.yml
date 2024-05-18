@@ -9,11 +9,13 @@ services:
     logging:
       driver: none
 
-  backend:
+  backend-dev:
     depends_on:
       - mongo
     container_name: dev_excuse_backend
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
     ports:
       - 3001:3001
     develop:
@@ -28,11 +30,13 @@ services:
           ignore:
             - node_modules/
 
-  frontend:
+  frontend-dev:
     depends_on:
-      - backend
+      - backend-dev
     container_name: dev_excuse_frontend
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
     ports:
       - 3000:3000
     develop:
@@ -46,6 +50,26 @@ services:
           action: sync
           ignore:
             - node_modules/
+
+  backend-prod:
+    depends_on:
+      - mongo
+    container_name: prod_excuse_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    ports:
+      - 3001:3001
+
+  frontend-prod:
+    depends_on:
+      - backend-prod
+    container_name: prod_excuse_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - 4173:4173
 
 volumes:
   mongo-data:
